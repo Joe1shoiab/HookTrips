@@ -2,7 +2,6 @@ import express, { RequestHandler } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './lib/mongodb';
-import Message from './models/Message';
 
 // Load environment variables
 dotenv.config();
@@ -48,6 +47,7 @@ const handleMessage: RequestHandler = async (req, res) => {
     }
 
     console.log('Creating new message...');
+    const Message = require('./models/Message');
     const newMessage = await Message.create({ name, phone, subject, message });
     console.log('Message created successfully:', newMessage);
 

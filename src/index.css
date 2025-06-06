@@ -173,3 +173,22 @@ main {
   margin-left: 0;
   margin-right: 0.25rem;
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-timeline: --page-scroll block;
+}
+
+/* Custom smooth scroll animation */
+@keyframes smoothScroll {
+  from {
+    transform: translateY(var(--scroll-from));
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.smooth-scroll {
+  animation: smoothScroll 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Clock, Star, Heart } from 'lucide-react';
+import { MapPin, Star, Heart } from 'lucide-react';
 import DestinationModal from './DestinationModal';
 
 interface DestinationCardProps {
@@ -10,13 +10,13 @@ interface DestinationCardProps {
     location: string;
     price: number;
     rating: number;
-    duration: string;
     category: string;
+    activities: string[];
   };
 }
 
 const DestinationCard: React.FC<DestinationCardProps> = ({ destination }) => {
-  const { name, image, location, price, rating, duration, category } = destination;
+  const { name, image, location, price, rating, category } = destination;
   const [isFavorite, setIsFavorite] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -26,13 +26,19 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ destination }) => {
     setIsFavorite(!isFavorite);
   };
 
+  // Get the image name from the URL or path
+  const getImageName = (imagePath: string) => {
+    const parts = imagePath.split('/');
+    return parts[parts.length - 1].split('?')[0]; // Remove query parameters
+  };
+
   return (
     <>
       <div className="card group">
         {/* Card Image */}
         <div className="relative overflow-hidden h-64">
           <img 
-            src={image} 
+            src={`/src/assets/destinations/${getImageName(image)}`} 
             alt={name} 
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
@@ -66,10 +72,6 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ destination }) => {
           </div>
           
           <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center">
-              <Clock size={16} className="text-[var(--accent-light)] mr-1" />
-              <span className="text-sm text-gray-300">{duration}</span>
-            </div>
             <div className="flex items-center">
               <Star size={16} className="text-[var(--warning)] fill-current mr-1" />
               <span className="text-sm">{rating.toFixed(1)}</span>

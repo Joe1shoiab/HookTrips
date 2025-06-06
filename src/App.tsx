@@ -17,8 +17,16 @@ const App: React.FC = () => {
   }, [i18n.language]);
 
   useEffect(() => {
-    // Reset scroll position when route changes
-    window.scrollTo(0, 0);
+    // Ensure smooth scrolling works consistently
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
+
+    // Add a small delay to ensure the new page content is loaded
+    setTimeout(scrollToTop, 100);
   }, [location.pathname]);
 
   return (

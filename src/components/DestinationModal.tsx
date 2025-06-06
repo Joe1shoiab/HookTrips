@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, MapPin, Clock, Star, Calendar, Users, DollarSign } from 'lucide-react';
+import { X, MapPin, Star, Calendar, Users, DollarSign, Activity, Info } from 'lucide-react';
 
 interface DestinationModalProps {
   destination: {
@@ -9,8 +9,10 @@ interface DestinationModalProps {
     location: string;
     price: number;
     rating: number;
-    duration: string;
     category: string;
+    activities: string[];
+    highlights?: string[];
+    description?: string;
   };
   isOpen: boolean;
   onClose: () => void;
@@ -19,7 +21,47 @@ interface DestinationModalProps {
 const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen, onClose }) => {
   if (!isOpen) return null;
 
-  const { name, image, location, price, rating, duration, category } = destination;
+  const { name, image, location, price, rating, category, activities } = destination;
+
+  // Get the image name from the URL or path
+  const getImageName = (imagePath: string) => {
+    const parts = imagePath.split('/');
+    return parts[parts.length - 1].split('?')[0]; // Remove query parameters
+  };
+
+  // Default highlights if none provided
+  const defaultHighlights = [
+    {
+      icon: <Calendar size={20} className="text-[var(--accent-light)] mr-2 mt-1" />,
+      text: "Flexible booking dates available throughout the year"
+    },
+    {
+      icon: <Users size={20} className="text-[var(--accent-light)] mr-2 mt-1" />,
+      text: "Small groups of 8-12 people for a more intimate experience"
+    },
+    {
+      icon: <Activity size={20} className="text-[var(--accent-light)] mr-2 mt-1" />,
+      text: "Carefully curated activities based on your preferences"
+    },
+    {
+      icon: <Star size={20} className="text-[var(--accent-light)] mr-2 mt-1" />,
+      text: "Expert local guides and carefully curated experiences"
+    }
+  ];
+
+  // Use provided highlights or default ones
+  const displayHighlights = destination.highlights && destination.highlights.length > 0
+    ? destination.highlights.map((highlight, index) => ({
+        icon: defaultHighlights[index % defaultHighlights.length].icon,
+        text: highlight
+      }))
+    : defaultHighlights;
+
+  // Default description if none provided
+  const defaultDescription = `Experience the journey of a lifetime in ${location}. This carefully crafted itinerary combines adventure, culture, and relaxation to give you an unforgettable travel experience. Our expert guides will lead you through hidden gems and must-see locations, ensuring you get the most authentic and enriching experience possible.`;
+
+  // Use provided description or default one
+  const displayDescription = destination.description || defaultDescription;
 
   // Prevent modal close when clicking inside the modal
   const handleModalClick = (e: React.MouseEvent) => {
@@ -38,7 +80,7 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
         {/* Header with close button */}
         <div className="relative">
           <img 
-            src={image} 
+            src={`/src/assets/destinations/${getImageName(image)}`} 
             alt={name} 
             className="w-full h-64 object-cover rounded-t-xl"
           />
@@ -64,10 +106,6 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
               <span>{location}</span>
             </div>
             <div className="flex items-center">
-              <Clock size={20} className="text-[var(--accent-light)] mr-2" />
-              <span>{duration}</span>
-            </div>
-            <div className="flex items-center">
               <Star size={20} className="text-[var(--warning)] fill-current mr-2" />
               <span>{rating.toFixed(1)} Rating</span>
             </div>
@@ -78,31 +116,51 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
           </div>
 
           <div className="border-t border-[var(--secondary)] pt-6">
+            <h3 className="text-xl font-semibold mb-4">Activities</h3>
+            <div className="flex flex-wrap gap-2">
+              {activities.map((activity, index) => (
+                <span 
+                  key={index}
+                  className="bg-[var(--secondary)] px-3 py-1 rounded-full text-sm"
+                >
+                  {activity}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="border-t border-[var(--secondary)] pt-6 mt-6">
             <h3 className="text-xl font-semibold mb-4">Trip Highlights</h3>
             <ul className="space-y-3">
-              <li className="flex items-start">
-                <Calendar size={20} className="text-[var(--accent-light)] mr-2 mt-1" />
-                <span>Flexible booking dates available throughout the year</span>
-              </li>
-              <li className="flex items-start">
-                <Users size={20} className="text-[var(--accent-light)] mr-2 mt-1" />
-                <span>Small groups of 8-12 people for a more intimate experience</span>
-              </li>
-              <li className="flex items-start">
-                <Star size={20} className="text-[var(--accent-light)] mr-2 mt-1" />
-                <span>Expert local guides and carefully curated experiences</span>
-              </li>
+              {displayHighlights.map((highlight, index) => (
+                <li key={index} className="flex items-start">
+                  {highlight.icon}
+                  <span>{highlight.text}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className="border-t border-[var(--secondary)] pt-6 mt-6">
             <h3 className="text-xl font-semibold mb-4">Description</h3>
-            <p className="text-gray-300 mb-4">
-              Experience the journey of a lifetime in {location}. This carefully crafted itinerary combines adventure, culture, and relaxation to give you an unforgettable travel experience.
-            </p>
-            <p className="text-gray-300">
-              Our expert guides will lead you through hidden gems and must-see locations, ensuring you get the most authentic and enriching experience possible.
-            </p>
+            <div className="flex items-start mb-4">
+              <Info size={20} className="text-[var(--accent-light)] mr-2 mt-1" />
+              <p className="text-gray-300">
+                {displayDescription}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 flex justify-end">
+            <button 
+              className="btn btn-accent px-8 py-3"
+              onClick={() => {
+                // TODO: Implement booking functionality
+                alert('Booking functionality coming soon!');
+              }}
+            >
+              Book Now
+            </button>
           </div>
         </div>
       </div>

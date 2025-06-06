@@ -219,7 +219,7 @@ const AboutPage: React.FC = () => {
             <div className="bg-[var(--primary)] rounded-xl overflow-hidden group relative">
               <div className="relative h-80">
                 <img 
-                  src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                  src='/src/assets/founders/OmarShoieb.png' 
                   alt="John Walker" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -231,7 +231,7 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold">John Walker</h3>
+                <h3 className="text-xl font-bold">Omar Shoieb</h3>
                 <p className="text-[var(--accent-light)]">Founder & CEO</p>
               </div>
             </div>
