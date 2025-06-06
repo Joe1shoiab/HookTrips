@@ -1,0 +1,121 @@
+import { Destination } from '../types';
+
+export const ALL_DESTINATIONS: Destination[] = [
+  {
+    id: 1,
+    name: 'Bali Retreat',
+    image: 'https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    location: 'Bali, Indonesia',
+    price: 1299,
+    rating: 4.8,
+    duration: '7 days',
+    category: 'Beach',
+    region: 'Asia',
+    activities: ['relaxation', 'culture', 'nature'],
+    difficulty: 'easy'
+  },
+  {
+    id: 2,
+    name: 'Swiss Alps Adventure',
+    image: 'https://images.pexels.com/photos/290452/pexels-photo-290452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    location: 'Interlaken, Switzerland',
+    price: 1599,
+    rating: 4.9,
+    duration: '8 days',
+    category: 'Mountain',
+    region: 'Europe',
+    activities: ['hiking', 'skiing', 'adventure'],
+    difficulty: 'moderate'
+  },
+  {
+    id: 3,
+    name: 'Kyoto Experience',
+    image: 'https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    location: 'Kyoto, Japan',
+    price: 1899,
+    rating: 4.7,
+    duration: '10 days',
+    category: 'Cultural',
+    region: 'Asia',
+    activities: ['culture', 'history', 'food'],
+    difficulty: 'easy'
+  },
+  {
+    id: 4,
+    name: 'Machu Picchu Trek',
+    image: 'https://images.pexels.com/photos/2105785/pexels-photo-2105785.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    location: 'Cusco, Peru',
+    price: 2199,
+    rating: 4.9,
+    duration: '12 days',
+    category: 'Adventure',
+    region: 'South America',
+    activities: ['hiking', 'history', 'nature'],
+    difficulty: 'challenging'
+  },
+  {
+    id: 5,
+    name: 'Greek Island Hopping',
+    image: 'https://images.pexels.com/photos/1010657/pexels-photo-1010657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    location: 'Santorini, Greece',
+    price: 1799,
+    rating: 4.6,
+    duration: '9 days',
+    category: 'Beach',
+    region: 'Europe',
+    activities: ['relaxation', 'culture', 'food'],
+    difficulty: 'easy'
+  },
+  {
+    id: 6,
+    name: 'Safari Experience',
+    image: 'https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    location: 'Serengeti, Tanzania',
+    price: 3299,
+    rating: 4.9,
+    duration: '10 days',
+    category: 'Safari',
+    region: 'Africa',
+    activities: ['wildlife', 'nature', 'photography'],
+    difficulty: 'moderate'
+  },
+  {
+    id: 7,
+    name: 'New Zealand Road Trip',
+    image: 'https://images.pexels.com/photos/724949/pexels-photo-724949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    location: 'South Island, New Zealand',
+    price: 2499,
+    rating: 4.8,
+    duration: '14 days',
+    category: 'Adventure',
+    region: 'Oceania',
+    activities: ['road trip', 'hiking', 'adventure'],
+    difficulty: 'moderate'
+  },
+  {
+    id: 8,
+    name: 'Northern Lights Tour',
+    image: 'https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    location: 'Tromsø, Norway',
+    price: 2199,
+    rating: 4.7,
+    duration: '6 days',
+    category: 'Nature',
+    region: 'Europe',
+    activities: ['nature', 'photography', 'culture'],
+    difficulty: 'easy'
+  },
+  {
+    id: 9,
+    name: 'Maldives Luxury Escape',
+    image: 'https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    location: 'Malé, Maldives',
+    price: 3999,
+    rating: 4.9,
+    duration: '8 days',
+    category: 'Beach',
+    region: 'Asia',
+    activities: ['relaxation', 'snorkeling', 'luxury'],
+    difficulty: 'easy'
+  }
+]; 

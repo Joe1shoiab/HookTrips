@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Variables */
+:root {
+  --primary: #0f1825;
+  --primary-dark: #070c12;
+  --secondary: #162231;
+  --accent-light: #d4e3ff;
+  --accent-dark: #92b8ff;
+  --white: #ffffff;
+  
+  --success: #2dd36f;
+  --warning: #eab308;
+  --error: #ef4444;
+  
+  --transition-speed: 0.3s;
+}
+
+/* Global Styles */
+body {
+  @apply bg-[var(--primary)] text-white;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold leading-tight;
+}
+
+h1 {
+  @apply text-4xl sm:text-5xl md:text-6xl;
+}
+
+h2 {
+  @apply text-3xl sm:text-4xl;
+}
+
+h3 {
+  @apply text-2xl sm:text-3xl;
+}
+
+p {
+  @apply leading-relaxed;
+}
+
+.container {
+  @apply mx-auto px-4 max-w-7xl;
+}
+
+.app-container {
+  @apply min-h-screen flex flex-col;
+}
+
+main {
+  @apply flex-grow;
+}
+
+/* Button Styles */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center justify-center;
+}
+
+.btn-primary {
+  @apply bg-[var(--primary)] text-white hover:bg-[var(--primary-dark)] border border-[var(--accent-dark)];
+}
+
+.btn-accent {
+  @apply bg-[var(--accent-dark)] text-[var(--primary)] hover:bg-[var(--accent-light)] shadow-md;
+}
+
+.btn-outline {
+  @apply border-2 border-[var(--accent-dark)] text-[var(--accent-light)] hover:bg-[var(--accent-dark)] hover:text-[var(--primary)];
+}
+
+/* Card Styles */
+.card {
+  @apply bg-[var(--primary)] rounded-xl overflow-hidden transition-transform duration-300 hover:scale-[1.02];
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Form Styles */
+.form-control {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block mb-2 text-sm font-medium text-[var(--accent-light)];
+}
+
+.form-input {
+  @apply w-full px-4 py-2 bg-[var(--secondary)] border border-[var(--primary)] rounded-lg 
+  focus:outline-none focus:ring-2 focus:ring-[var(--accent-light)] text-white;
+}
+
+/* Accessibility */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+}
+
+/* Video Background */
+.video-background {
+  @apply absolute top-0 left-0 w-full h-full object-cover z-0;
+}
+
+/* Overlay */
+.overlay {
+  @apply absolute top-0 left-0 w-full h-full bg-[var(--secondary)] bg-opacity-60 z-10;
+}
+
+/* Hero Section */
+.hero-content {
+  @apply relative z-20;
+}
+
+/* RTL Support */
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Font classes */
+.font-english {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-arabic {
+  font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+/* RTL specific adjustments */
+.rtl .space-x-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+.rtl .mr-1,
+.rtl .mr-2 {
+  margin-right: 0;
+  margin-left: 0.25rem;
+}
+
+.rtl .ml-1,
+.rtl .ml-2 {
+  margin-left: 0;
+  margin-right: 0.25rem;
+}

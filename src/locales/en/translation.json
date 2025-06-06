@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "trips": "Trips",
+    "about": "About",
+    "contact": "Contact",
+    "bookNow": "Book Now"
+  },
+  "hero": {
+    "title": "Discover Your Next Adventure",
+    "subtitle": "Explore the world's most beautiful destinations"
+  },
+  "destinations": {
+    "viewDetails": "View Details",
+    "startingFrom": "Starting from",
+    "duration": "Duration",
+    "rating": "Rating",
+    "location": "Location",
+    "category": "Category",
+    "tripHighlights": "Trip Highlights",
+    "description": "Description",
+    "highlights": {
+      "dates": "Flexible booking dates available throughout the year",
+      "groups": "Small groups of 8-12 people for a more intimate experience",
+      "guides": "Expert local guides and carefully curated experiences"
+    },
+    "descriptionText": {
+      "part1": "Experience the journey of a lifetime in",
+      "part2": "This carefully crafted itinerary combines adventure, culture, and relaxation to give you an unforgettable travel experience.",
+      "part3": "Our expert guides will lead you through hidden gems and must-see locations, ensuring you get the most authentic and enriching experience possible."
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Your Trusted Travel Partner",
+    "meetTeam": "Meet Our Team",
+    "stats": {
+      "destinations": "Destinations",
+      "travelers": "Happy Travelers",
+      "experience": "Years Experience",
+      "awards": "Awards Won"
+    }
+  },
+  "footer": {
+    "newsletter": "Subscribe to Newsletter",
+    "subscribe": "Subscribe",
+    "emailPlaceholder": "Enter your email",
+    "rights": "All rights reserved",
+    "contact": {
+      "title": "Contact Info",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email"
+    }
+  },
+  "language": {
+    "select": "Select Language",
+    "en": "English",
+    "ar": "Arabic"
+  }
+} 
