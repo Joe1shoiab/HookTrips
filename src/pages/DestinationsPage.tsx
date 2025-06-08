@@ -54,7 +54,21 @@ const DestinationsPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-[var(--secondary)] pt-24 pb-16">
         <div className="container text-center">
-          <p className="text-red-500 text-lg">Error: {error}</p>
+          <div className="max-w-md mx-auto bg-[var(--primary)] p-8 rounded-xl shadow-lg">
+            <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-red-500 mb-2">Error Loading Destinations</h3>
+            <p className="text-gray-300 mb-4">{error}</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="btn btn-accent"
+            >
+              Try Again
+            </button>
+          </div>
         </div>
       </div>
     );
