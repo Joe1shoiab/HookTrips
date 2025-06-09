@@ -20,7 +20,7 @@ interface DestinationModalProps {
 const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen, onClose }) => {
   const { name, images, location, price, rating, activities } = destination;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isAutoplay, setIsAutoplay] = useState(true);
+  const [isAutoplay] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Reset fullscreen state when modal opens or closes
@@ -123,7 +123,7 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
       <div 
         className={`bg-[var(--primary)] rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto ${
           isFullscreen ? 'fixed inset-0 max-w-none max-h-none rounded-none z-[60]' : ''
-        } [&::-webkit-scrollbar]:w-3 [&::-webkit-scrollbar-track]:bg-[var(--primary)] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:border-2 [&::-webkit-scrollbar-track]:border-[var(--secondary)] [&::-webkit-scrollbar-thumb]:bg-[var(--secondary)] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border-2 [&::-webkit-scrollbar-thumb]:border-[var(--primary)] [&::-webkit-scrollbar-thumb]:hover:bg-[var(--accent-light)]`}
+        } [&::-webkit-scrollbar]:w-3 [&::-webkit-scrollbar-track]:bg-[var(--primary)] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:border-2 [&::-webkit-scrollbar-track]:border-[var(--secondary)] [&::-webkit-scrollbar-thumb]:bg-[var(--secondary)] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border-2 [&::-webkit-scrollbar-thumb]:border-[var(--primary)] [&::-webkit-scrollbar-thumb]:hover:bg-[var(--accent-light)] [&::-webkit-scrollbar]:rounded-r-xl`}
         onClick={handleModalClick}
       >
         {/* Image Carousel */}
