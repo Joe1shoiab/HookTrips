@@ -33,7 +33,7 @@ const LanguageSwitcher: React.FC = () => {
       </button>
 
       <Notification
-        message="We are still working on the Arabic language feature. Some content may not be fully translated."
+        message="نحن ما زلنا نعمل على ميزة اللغة العربية. قد لا يتم ترجمة بعض المحتوى بالكامل."
         isVisible={showNotification}
         onClose={() => setShowNotification(false)}
       />

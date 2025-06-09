@@ -35,11 +35,11 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ destination }) => {
     <>
       <div className="card group">
         {/* Card Image */}
-        <div className="relative overflow-hidden h-64">
+        <div className="relative overflow-hidden h-64 rounded-t-xl">
           <img 
             src={`/src/assets/destinations/${getImageName(images[0])}`} 
             alt={name} 
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 transform-gpu origin-center"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--primary)]"></div>
           
