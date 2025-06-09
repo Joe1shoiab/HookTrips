@@ -6,17 +6,16 @@ interface DestinationCardProps {
   destination: {
     id: number;
     name: string;
-    image: string;
+    images: string[];
     location: string;
     price: number;
     rating: number;
-    category: string;
     activities: string[];
   };
 }
 
 const DestinationCard: React.FC<DestinationCardProps> = ({ destination }) => {
-  const { name, image, location, price, rating, category } = destination;
+  const { name, images, location, price, rating } = destination;
   const [isFavorite, setIsFavorite] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -38,16 +37,11 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ destination }) => {
         {/* Card Image */}
         <div className="relative overflow-hidden h-64">
           <img 
-            src={`/src/assets/destinations/${getImageName(image)}`} 
+            src={`/src/assets/destinations/${getImageName(images[0])}`} 
             alt={name} 
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--primary)]"></div>
-          
-          {/* Category Tag */}
-          <div className="absolute top-4 left-4 bg-[var(--primary)] px-3 py-1 rounded-full text-xs font-medium">
-            {category}
-          </div>
           
           {/* Favorite Button */}
           <button 

@@ -1,15 +1,14 @@
-import React from 'react';
-import { X, MapPin, Star, Calendar, Users, DollarSign, Activity, Info } from 'lucide-react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
+import { X, MapPin, Star, Calendar, Users, DollarSign, Activity, Info, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface DestinationModalProps {
   destination: {
     id: number;
     name: string;
-    image: string;
+    images: string[];
     location: string;
     price: number;
     rating: number;
-    category: string;
     activities: string[];
     highlights?: string[];
     description?: string;
@@ -19,15 +18,35 @@ interface DestinationModalProps {
 }
 
 const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen, onClose }) => {
-  if (!isOpen) return null;
-
-  const { name, image, location, price, rating, category, activities } = destination;
+  const { name, images, location, price, rating, activities } = destination;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAutoplay, setIsAutoplay] = useState(true);
 
   // Get the image name from the URL or path
   const getImageName = (imagePath: string) => {
     const parts = imagePath.split('/');
     return parts[parts.length - 1].split('?')[0]; // Remove query parameters
   };
+
+  // Autoplay functionality
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isOpen && isAutoplay) {
+      interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % images.length);
+      }, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [isOpen, isAutoplay, images.length]);
+
+  // Navigation handlers
+  const nextImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  }, [images.length]);
+
+  const prevImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  }, [images.length]);
 
   // Default highlights if none provided
   const defaultHighlights = [
@@ -68,6 +87,10 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
     e.stopPropagation();
   };
 
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <div 
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
@@ -77,13 +100,63 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
         className="bg-[var(--primary)] rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
         onClick={handleModalClick}
       >
-        {/* Header with close button */}
+        {/* Image Carousel */}
         <div className="relative">
-          <img 
-            src={`/src/assets/destinations/${getImageName(image)}`} 
-            alt={name} 
-            className="w-full h-64 object-cover rounded-t-xl"
-          />
+          <div className="relative h-64 overflow-hidden">
+            {images.map((image, index) => (
+              <img 
+                key={index}
+                src={`/src/assets/destinations/${getImageName(image)}`}
+                alt={`${name} - Image ${index + 1}`}
+                className={`absolute w-full h-full object-cover transition-opacity duration-500 ${
+                  index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              prevImage();
+            }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-all"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={24} className="text-white" />
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              nextImage();
+            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-all"
+            aria-label="Next image"
+          >
+            <ChevronRight size={24} className="text-white" />
+          </button>
+
+          {/* Image Indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentImageIndex(index);
+                }}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === currentImageIndex 
+                    ? 'bg-white scale-125' 
+                    : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Close button */}
           <button 
             onClick={onClose}
             className="absolute top-4 right-4 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-all"
@@ -91,9 +164,6 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
           >
             <X size={20} className="text-white" />
           </button>
-          <div className="absolute top-4 left-4 bg-[var(--primary)] px-3 py-1 rounded-full text-sm font-medium">
-            {category}
-          </div>
         </div>
 
         {/* Content */}
@@ -168,4 +238,4 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
   );
 };
 
-export default DestinationModal; 
+export default memo(DestinationModal); 

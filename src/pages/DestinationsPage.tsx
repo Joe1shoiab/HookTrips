@@ -4,7 +4,7 @@ import DestinationCard from '../components/DestinationCard';
 interface Destination {
   id: number;
   name: string;
-  image: string;
+  images: string[];
   location: string;
   price: number;
   rating: number;
