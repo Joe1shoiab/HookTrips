@@ -4,15 +4,15 @@ export const TRIPS: Trip[] = [
   {
     id: 1,
     title: 'Bali Cultural Immersion',
-    destinationId: 1, // Bali
-    image: 'https://images.pexels.com/photos/2014872/pexels-photo-2014872.jpeg',
+    name: 'Bali Cultural Experience',
+    images: [
+      'https://images.pexels.com/photos/2014872/pexels-photo-2014872.jpeg',
+      'https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg'
+    ],
     description: 'Immerse yourself in Balinese culture with temple visits, traditional dance performances, and local cooking classes.',
-    startDate: '2024-06-15',
-    endDate: '2024-06-22',
+    destinationId: 1,
     price: 1299,
     duration: '7 days',
-    maxGroupSize: 12,
-    availableSeats: 8,
     highlights: [
       'Visit ancient temples',
       'Traditional dance workshop',
@@ -31,20 +31,21 @@ export const TRIPS: Trip[] = [
         title: 'Temple Tour',
         description: 'Visit Tanah Lot and Uluwatu temples, followed by a sunset ceremony.'
       }
-    ]
+    ],
+    createdAt: new Date('2024-01-01')
   },
   {
     id: 2,
     title: 'Bali Beach Retreat',
-    destinationId: 1, // Bali
-    image: 'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg',
+    name: 'Bali Beach Paradise',
+    images: [
+      'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg',
+      'https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg'
+    ],
     description: 'Relax on Bali\'s finest beaches and enjoy water sports activities.',
-    startDate: '2024-07-01',
-    endDate: '2024-07-08',
+    destinationId: 1,
     price: 1499,
     duration: '7 days',
-    maxGroupSize: 10,
-    availableSeats: 5,
     highlights: [
       'Surfing lessons',
       'Snorkeling trip',
@@ -63,20 +64,21 @@ export const TRIPS: Trip[] = [
         title: 'Surf & Sun',
         description: 'Morning surf lesson followed by beach relaxation and spa treatment.'
       }
-    ]
+    ],
+    createdAt: new Date('2024-01-15')
   },
   {
     id: 3,
     title: 'Swiss Mountain Explorer',
-    destinationId: 2, // Swiss Alps
-    image: 'https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg',
+    name: 'Swiss Alps Adventure',
+    images: [
+      'https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg',
+      'https://images.pexels.com/photos/290452/pexels-photo-290452.jpeg'
+    ],
     description: 'Experience the majestic Swiss Alps through hiking and scenic train rides.',
-    startDate: '2024-08-01',
-    endDate: '2024-08-08',
+    destinationId: 2,
     price: 1899,
     duration: '8 days',
-    maxGroupSize: 12,
-    availableSeats: 6,
     highlights: [
       'Glacier Express journey',
       'Mountain hiking trails',
@@ -95,20 +97,21 @@ export const TRIPS: Trip[] = [
         title: 'Jungfraujoch Experience',
         description: 'Visit to the "Top of Europe" via scenic railway.'
       }
-    ]
+    ],
+    createdAt: new Date('2024-02-01')
   },
   {
     id: 4,
     title: 'Kyoto Traditional Tour',
-    destinationId: 3, // Kyoto
-    image: 'https://images.pexels.com/photos/5169056/pexels-photo-5169056.jpeg',
+    name: 'Kyoto Cultural Journey',
+    images: [
+      'https://images.pexels.com/photos/5169056/pexels-photo-5169056.jpeg',
+      'https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg'
+    ],
     description: 'Discover the heart of traditional Japan in historic Kyoto.',
-    startDate: '2024-09-01',
-    endDate: '2024-09-10',
+    destinationId: 3,
     price: 2199,
     duration: '10 days',
-    maxGroupSize: 10,
-    availableSeats: 4,
     highlights: [
       'Tea ceremony experience',
       'Geisha district tour',
@@ -127,6 +130,7 @@ export const TRIPS: Trip[] = [
         title: 'Temple Circuit',
         description: 'Visit to Kinkaku-ji and Ryoan-ji temples, afternoon tea ceremony.'
       }
-    ]
+    ],
+    createdAt: new Date('2024-02-15')
   }
 ]; 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Calendar, MapPin, Users, Clock, X } from 'lucide-react';
+import { MapPin, Clock, X } from 'lucide-react';
 import { Trip } from '../types';
-import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 
 interface TripCardProps {
@@ -14,14 +13,11 @@ const TripCard: React.FC<TripCardProps> = ({ trip }) => {
   
   const {
     title,
-    image,
+    name,
+    images,
     description,
-    startDate,
-    endDate,
     price,
     duration,
-    maxGroupSize,
-    availableSeats,
     highlights,
     itinerary
   } = trip;
@@ -29,17 +25,12 @@ const TripCard: React.FC<TripCardProps> = ({ trip }) => {
   return (
     <>
       <div className="bg-[var(--primary)] rounded-xl overflow-hidden shadow-lg hover:transform hover:scale-[1.02] transition-all">
-        <div className="relative h-48">
+        <div className="relative aspect-[16/9] w-full">
           <img 
-            src={image} 
+            src={images[0]} 
             alt={title} 
             className="w-full h-full object-cover"
           />
-          {availableSeats < 5 && (
-            <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm">
-              Only {availableSeats} seats left!
-            </div>
-          )}
         </div>
         
         <div className="p-6">
@@ -48,22 +39,12 @@ const TripCard: React.FC<TripCardProps> = ({ trip }) => {
           
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="flex items-center text-sm">
-              <Calendar size={16} className="text-[var(--accent-light)] mr-2" />
-              <span>
-                {format(new Date(startDate), 'MMM d')} - {format(new Date(endDate), 'MMM d, yyyy')}
-              </span>
-            </div>
-            <div className="flex items-center text-sm">
               <Clock size={16} className="text-[var(--accent-light)] mr-2" />
               <span>{duration}</span>
             </div>
             <div className="flex items-center text-sm">
-              <Users size={16} className="text-[var(--accent-light)] mr-2" />
-              <span>Max {maxGroupSize} people</span>
-            </div>
-            <div className="flex items-center text-sm">
               <MapPin size={16} className="text-[var(--accent-light)] mr-2" />
-              <span>{availableSeats} seats left</span>
+              <span>{name}</span>
             </div>
           </div>
           
@@ -85,9 +66,12 @@ const TripCard: React.FC<TripCardProps> = ({ trip }) => {
       {/* Trip Details Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-[var(--primary)] rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-[var(--primary)] p-6 border-b border-[var(--secondary)] flex justify-between items-center">
-              <h2 className="text-2xl font-bold">{title}</h2>
+          <div className="bg-[var(--primary)] rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:w-3 [&::-webkit-scrollbar-track]:bg-[var(--primary)] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:border-2 [&::-webkit-scrollbar-track]:border-[var(--secondary)] [&::-webkit-scrollbar-thumb]:bg-[var(--secondary)] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border-2 [&::-webkit-scrollbar-thumb]:border-[var(--primary)] [&::-webkit-scrollbar-thumb]:hover:bg-[var(--accent-light)] [&::-webkit-scrollbar]:rounded-r-xl">
+            <div className="sticky top-0 bg-[var(--primary)] p-6 border-b border-[var(--secondary)] flex justify-between items-center z-10">
+              <div>
+                <h2 className="text-2xl font-bold">{title}</h2>
+                <p className="text-gray-400 mt-1">{name}</p>
+              </div>
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="text-gray-400 hover:text-white"
@@ -96,9 +80,19 @@ const TripCard: React.FC<TripCardProps> = ({ trip }) => {
               </button>
             </div>
             
-            <div className="p-6">
-              <div className="aspect-video w-full mb-6 rounded-lg overflow-hidden">
-                <img src={image} alt={title} className="w-full h-full object-cover" />
+            <div className="p-6 relative">
+              {/* Image Gallery */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                {images.map((image, index) => (
+                  <div key={index} className="aspect-[16/9] w-full rounded-lg overflow-hidden bg-[var(--secondary)]">
+                    <img 
+                      src={image} 
+                      alt={`${title} - Image ${index + 1}`} 
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
@@ -139,12 +133,8 @@ const TripCard: React.FC<TripCardProps> = ({ trip }) => {
                       <span className="font-semibold">{duration}</span>
                     </div>
                     <div className="text-center">
-                      <span className="block text-sm text-gray-400 mb-1">Group Size</span>
-                      <span className="font-semibold">Max {maxGroupSize}</span>
-                    </div>
-                    <div className="text-center">
-                      <span className="block text-sm text-gray-400 mb-1">Available Seats</span>
-                      <span className="font-semibold">{availableSeats}</span>
+                      <span className="block text-sm text-gray-400 mb-1">Location</span>
+                      <span className="font-semibold">{name}</span>
                     </div>
                   </div>
                   <button className="btn btn-accent">
